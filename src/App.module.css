@@ -1,6 +1,11 @@
 body{
     margin: 10px;
+    background-color: black;
 }
+h1,h3,div{
+    color: white;
+}
+
 nav span{
     padding: 0 5px;
     border-radius: 10%;

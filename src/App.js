@@ -6,9 +6,9 @@ import style from './App.module.css'
 const Work = ({work, goToggle, index, page}) => {
   return (
     <div onClick={goToggle} data-index={index}>
-        <h3 data-index={index}>{work.title}</h3>
-        <div className={style.container} data-index={index}>
-          <img src={work.imgUrl} style={{width:page === "home" ? "10%":"50%"}} data-index={index}/>
+        <div data-index={index}>
+          <h3 data-index={index}>{work.title}</h3>
+          <img src={work.imgUrl} style={{width:page === "home" ? "70%":"30%"}} data-index={index}/>
           {page !== "home" ? <div data-index={index}>{work.description}</div> : null}
         </div>
       </div>
@@ -63,13 +63,15 @@ function App() {
     }
   ];
   return (
-    <div>
+    <main>
       <NavBar goHome={goHome} />
       <h1>Rebellia</h1>
-      {page === "home" ? works.map((work, index) => (
-          <Work key={index} work={work} goToggle={goToggle} index={index} page={page}/>
-      )) : <Work work={works[Number(page)]} index="home" page={page} goToggle={goToggle}/>}
-    </div>
+      <div className={page === "home" ? style.container : null}>
+        {page === "home" ? works.map((work, index) => (
+            <Work key={index} work={work} goToggle={goToggle} index={index} page={page}/>
+        )) : <Work work={works[Number(page)]} index="home" page={page} goToggle={goToggle}/>}
+      </div>
+    </main>
   );
 }
 

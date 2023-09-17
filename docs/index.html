@@ -23,9 +23,13 @@
                 color: white;
             }
 
-            .container{
+            /* .container{
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
+            } */
+
+            .item{
+                cursor: pointer;
             }
         </style>
     </head>
@@ -38,10 +42,11 @@
 <script type="text/babel">
     const Work = ({work, goToggle, index, page}) => {
     return (
-        <div onClick={goToggle} data-index={index}>
+        <div onClick={goToggle} data-index={index} className="item">
+            <hr/>
             <div data-index={index}>
             <h3 data-index={index}>{work.title}</h3>
-            <img src={work.imgUrl} style={{width:page === "home" ? "70%":"30%"}} data-index={index}/>
+            <img src={work.imgUrl} style={{width:page === "home" ? "40%":"30%"}} data-index={index}/>
             {page !== "home" ? <div data-index={index}>{work.description}</div> : null}
             </div>
         </div>

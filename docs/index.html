@@ -15,7 +15,7 @@
                 color: white;
             }
 
-            nav span{
+            nav h1{
                 padding: 0 5px;
                 border-radius: 10%;
                 background-color: black;
@@ -42,19 +42,19 @@
 <script type="text/babel">
     const Work = ({work, goToggle, index, page}) => {
     return (
-        <div onClick={goToggle} data-index={index} className="item">
+        <div onClick={() => goToggle(index)}  className="item">
             <hr/>
-            <div data-index={index}>
-            <h3 data-index={index}>{work.title}</h3>
-            <img src={work.imgUrl} style={{width:page === "home" ? "40%":"30%"}} data-index={index}/>
-            {page !== "home" ? <pre data-index={index}>{work.description}</pre> : null}
+            <div >
+            <h3 >{work.title}</h3>
+            <img src={work.imgUrl} style={{width:page === "home" ? "40%":"30%"}} />
+            {page !== "home" ? <pre >{work.description}</pre> : null}
             </div>
         </div>
     );
     }
 
     const NavBar = ({goHome}) => {
-    return (<nav><span onClick={goHome}>HOME</span></nav>);
+    return (<nav><h1 onClick={goHome}>Rebellia</h1></nav>);
     }
 
     function App() {
@@ -64,9 +64,8 @@
         setPage("home");
     }
 
-    const goToggle = (event) => {
-        console.log(event.target.dataset.index);
-        setPage(event.target.dataset.index);
+    const goToggle = (index) => {
+        setPage(index);
     }
     const works = [
         {
@@ -123,7 +122,7 @@
     return (
         <main>
         <NavBar goHome={goHome} />
-        <h1>Rebellia</h1>
+        
         <div className={page === "home" ? "container" : null}>
             {page === "home" ? works.map((work, index) => (
                 <Work key={index} work={work} goToggle={goToggle} index={index} page={page}/>
